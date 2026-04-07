@@ -3,100 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ryo Studios | Acceso Admin</title>
-    
+    <title>Ryo Studios | Staff Login</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    
     <style>
-        :root {
-            --bg: #0b0b0c;
-            --card-bg: #161618;
-            --accent: #5e6ad2;
-            --text: #f7f8f8;
-            --text-dim: #b1b1b3;
-            --border: rgba(255, 255, 255, 0.08);
-        }
-
-        body { 
-            background: var(--bg); 
-            color: var(--text); 
-            font-family: 'Inter', sans-serif; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            height: 100vh; 
-            margin: 0; 
-            overflow: hidden;
-        }
-
-        /* DISEÑO DEL LOGIN NEGRO */
-        .login-box { 
-            background: var(--card-bg); 
-            padding: 40px; 
-            border-radius: 20px; 
-            border: 1px solid var(--border); 
-            width: 100%; 
-            max-width: 350px; 
-            text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            z-index: 100;
-        }
-
-        h2 { margin-bottom: 8px; letter-spacing: -1px; }
-        p { color: var(--text-dim); font-size: 14px; margin-bottom: 25px; }
-
-        input { 
-            width: 100%; 
-            padding: 14px; 
-            margin-bottom: 15px; 
-            border-radius: 10px; 
-            border: 1px solid var(--border); 
-            background: #000; 
-            color: white; 
-            box-sizing: border-box;
-            font-size: 14px;
-        }
-
-        button { 
-            width: 100%; 
-            padding: 14px; 
-            border-radius: 10px; 
-            border: none; 
-            background: var(--accent); 
-            color: white; 
-            font-weight: 600; 
-            cursor: pointer; 
-            transition: 0.2s;
-        }
-
-        button:hover { transform: translateY(-2px); filter: brightness(1.1); }
-
-        .error { 
-            color: #ff4d4d; 
-            font-size: 13px; 
-            margin-bottom: 15px; 
-            display: none; 
-            background: rgba(255, 77, 77, 0.1);
-            padding: 10px;
-            border-radius: 8px;
-        }
-
-        /* OCULTAR EL PANEL HASTA EL LOGIN */
-        #nc-root { display: none; }
+        body { background: #0b0b0c; color: white; font-family: 'Inter', sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; overflow: hidden; }
+        .login-box { background: #161618; padding: 40px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.08); width: 100%; max-width: 320px; text-align: center; z-index: 1000; position: relative; }
+        h2 { margin: 0 0 10px; letter-spacing: -1px; }
+        p { color: #b1b1b3; font-size: 14px; margin-bottom: 25px; }
+        input { width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #333; background: #000; color: white; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; border-radius: 8px; border: none; background: #5e6ad2; color: white; font-weight: 600; cursor: pointer; }
+        .error { color: #ff4d4d; font-size: 13px; margin-bottom: 15px; display: none; }
+        #nc-root { display: none; } /* Oculto hasta que loguees */
     </style>
 </head>
 <body>
 
     <div id="login-form" class="login-box">
-        <div style="font-size: 30px; margin-bottom: 10px; color: #ff9d00;">⚡</div>
-        <h2>Panel Ryo</h2>
-        <p>Introduce tus credenciales de equipo</p>
-        
-        <div id="error-msg" class="error">Usuario o Key incorrectos</div>
-        
-        <input type="text" id="user" placeholder="Admin: (Usuario)">
-        <input type="password" id="key" placeholder="Key: (Contraseña)">
-        <button onclick="checkLogin()">Entrar al Panel</button>
+        <div style="font-size: 30px; margin-bottom: 10px;">⚡</div>
+        <h2>Staff Access</h2>
+        <p>Solo personal autorizado</p>
+        <div id="error-msg" class="error">Credenciales incorrectas</div>
+        <input type="text" id="user" placeholder="Admin Name">
+        <input type="password" id="key" placeholder="Access Key">
+        <button onclick="checkLogin()">Entrar</button>
     </div>
 
     <script src="admins.js"></script>
@@ -106,42 +35,33 @@
         function checkLogin() {
             const u = document.getElementById('user').value;
             const k = document.getElementById('key').value;
-            const error = document.getElementById('error-msg');
-
-            // Verifica contra admins.js
+            
             if (window.listaAdmins && window.listaAdmins[u] === k) {
                 document.getElementById('login-form').style.display = 'none';
-                
-                // Forzamos que aparezca el panel de administración
-                const cmsRoot = document.getElementById('nc-root');
-                if(cmsRoot) cmsRoot.style.display = 'block';
-                
+                document.getElementById('nc-root').style.display = 'block';
                 initCMS();
             } else {
-                error.style.display = 'block';
+                document.getElementById('error-msg').style.display = 'block';
             }
         }
 
         function initCMS() {
             CMS.init({
                 config: {
-                    load_config_file: false, // Evita el error 404 de la derecha
-                    display_url: 'https://ryostudios.netlify.app',
+                    load_config_file: false,
+                    display_url: "https://ryostudios.netlify.app",
                     backend: { 
-                        name: 'git-gateway', 
-                        branch: 'main' 
+                        name: "github", 
+                        repo: "Elauullido/RyoStudios", // CAMBIA ESTO POR TU REPO (Ej: "Elauullido/RyoStudios")
+                        branch: "main" 
                     },
-                    media_folder: 'images',
-                    public_folder: '/images',
+                    media_folder: "images",
                     collections: [{
-                        name: 'eventos', 
-                        label: 'Eventos Minecraft', 
-                        folder: 'content/eventos', 
-                        create: true,
+                        name: "eventos", label: "Eventos", folder: "content/eventos", create: true,
                         fields: [
-                            { label: 'Título del Evento', name: 'title', widget: 'string' },
-                            { label: 'Estado', name: 'status', widget: 'select', options: ['En Vivo', 'Próximamente', 'Finalizado'] },
-                            { label: 'Descripción', name: 'body', widget: 'text' }
+                            {label: "Título", name: "title", widget: "string"},
+                            {label: "Estado", name: "status", widget: "select", options: ["En Vivo", "Próximamente", "Finalizado"]},
+                            {label: "Descripción", name: "body", widget: "text"}
                         ]
                     }]
                 }

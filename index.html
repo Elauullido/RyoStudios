@@ -4,90 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ryo Studios | Era de Eventos</title>
-    
     <link rel="icon" type="image/png" href="ryostudios.png">
+    
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    
     <style>
-        :root {
-            --bg: #0b0b0c; --card-bg: #161618; --text: #f7f8f8;
-            --text-dim: #b1b1b3; --accent: #5e6ad2; --discord: #5865F2;
-            --border: rgba(255, 255, 255, 0.08);
-        }
-        body { background-color: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+        :root { --bg: #0b0b0c; --card-bg: #161618; --text: #f7f8f8; --text-dim: #b1b1b3; --accent: #5e6ad2; --border: rgba(255, 255, 255, 0.08); }
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; line-height: 1.6; -webkit-font-smoothing: antialiased; }
         nav { position: fixed; top: 0; width: 100%; height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 5%; background: rgba(11, 11, 12, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); z-index: 100; box-sizing: border-box; }
-        .logo-nav { font-weight: 800; letter-spacing: -1px; font-size: 18px; display: flex; align-items: center; gap: 8px; }
-        .hero { padding: 180px 20px 60px; text-align: center; max-width: 900px; margin: 0 auto; animation: fadeIn 1s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .hero { padding: 180px 20px 60px; text-align: center; max-width: 900px; margin: 0 auto; }
         h1 { font-size: clamp(44px, 7vw, 80px); letter-spacing: -0.05em; margin-bottom: 24px; line-height: 0.9; font-weight: 800; }
         .description { font-size: 20px; color: var(--text-dim); max-width: 650px; margin: 0 auto 48px; }
-        .btn-group { display: flex; gap: 16px; justify-content: center; margin-bottom: 80px; }
-        .btn { padding: 14px 32px; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 15px; transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1); display: inline-block; }
-        .btn-primary { background: var(--accent); color: white; box-shadow: 0 10px 30px rgba(94, 106, 210, 0.2); }
-        .btn-secondary { background: rgba(255,255,255,0.05); color: white; border: 1px solid var(--border); }
-        .btn:hover { transform: translateY(-3px); filter: brightness(1.2); }
-        .section-title { text-align: center; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 3px; font-weight: 700; margin-bottom: 40px; }
+        .btn { padding: 14px 32px; border-radius: 10px; text-decoration: none; font-weight: 600; display: inline-block; transition: 0.2s; }
+        .btn-primary { background: var(--accent); color: white; }
+        .btn-secondary { background: rgba(255,255,255,0.05); color: white; border: 1px solid var(--border); margin-left: 10px; }
         .events-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; padding: 0 5% 100px; max-width: 1200px; margin: 0 auto; }
-        .event-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 32px; transition: 0.3s; position: relative; }
-        .event-card:hover { border-color: var(--accent); transform: translateY(-5px); background: #1c1c1f; }
-        .tag { font-size: 10px; font-weight: 800; padding: 4px 12px; border-radius: 100px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--text-dim); text-transform: uppercase; }
-        .tag.active { background: rgba(94, 106, 210, 0.15); color: #8c9eff; border-color: rgba(94,106,210,0.3); }
-        .event-card h3 { margin: 20px 0 12px; font-size: 24px; letter-spacing: -0.5px; }
-        .event-card p { color: var(--text-dim); font-size: 15px; line-height: 1.5; }
-        footer { text-align: center; padding: 60px 20px; border-top: 1px solid var(--border); color: var(--text-dim); font-size: 13px; opacity: 0.6; }
+        .event-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 32px; }
+        .tag { font-size: 10px; font-weight: 800; padding: 4px 12px; border-radius: 100px; background: rgba(94, 106, 210, 0.1); color: #8c9eff; text-transform: uppercase; }
+        footer { text-align: center; padding: 40px; opacity: 0.4; font-size: 12px; border-top: 1px solid var(--border); }
     </style>
 </head>
 <body>
-
     <nav>
-        <div class="logo-nav">⚡ RYO STUDIOS</div>
-        <div style="display: flex; gap: 15px; align-items: center;">
-            <a href="/admin" class="btn btn-secondary" style="padding: 8px 18px; font-size: 13px;">Acceso Admin</a>
-            <a href="https://discord.gg/TU_LINK" class="btn btn-secondary" style="padding: 8px 18px; font-size: 13px;">Discord</a>
+        <div style="font-weight: 800;">⚡ RYO STUDIOS</div>
+        <div>
+            <a href="/admin" class="btn-secondary" style="padding: 8px 15px; border-radius: 6px; text-decoration: none; font-size: 12px;">Acceso Staff</a>
         </div>
     </nav>
-
     <header class="hero">
-        <h1>Ryo Studios<br><span style="opacity: 0.4;">Era de Eventos</span></h1>
-        <p class="description">La nueva frontera de la creación en Minecraft. Diseñamos mundos, gestionamos torneos y construimos comunidad desde la raíz.</p>
-        <div class="btn-group">
-            <a href="#eventos" class="btn btn-primary">Ver Proyectos →</a>
-            <a href="https://discord.gg/TU_LINK" class="btn btn-secondary">Unirse al Equipo</a>
-        </div>
+        <h1>Ryo Studios</h1>
+        <p class="description">Gestión y creación de eventos profesionales en Minecraft.</p>
+        <a href="#eventos" class="btn btn-primary">Ver Eventos</a>
     </header>
-
-    <div id="eventos">
-        <p class="section-title">Calendario de Actividades</p>
-        <div class="events-grid">
-            <div class="event-card">
-                <span class="tag active">En Vivo</span>
-                <h3>Supervivencia Técnica</h3>
-                <p>Explora mecánicas avanzadas en un entorno competitivo. Servidor abierto para miembros seleccionados.</p>
-            </div>
-            <div class="event-card">
-                <span class="tag">Próximamente</span>
-                <h3>Copa Ryo: PvP</h3>
-                <p>Torneo eliminatorio 1vs1. Demuestra quién es el mejor guerrero. Inscripciones pronto.</p>
-            </div>
+    <div id="eventos" class="events-grid">
+        <div class="event-card">
+            <span class="tag">En Vivo</span>
+            <h3>Prueba de Sistema</h3>
+            <p>El panel de administración está siendo configurado.</p>
         </div>
     </div>
-
-    <footer>
-        &copy; 2026 Ryo Studios — Gestión Profesional de Eventos Minecraft.
-    </footer>
-
-    <script>
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", user => {
-          if (!user) {
-            window.netlifyIdentity.on("login", () => {
-              document.location.href = "/admin/";
-            });
-          }
-        });
-      }
-    </script>
+    <footer>&copy; 2026 Ryo Studios</footer>
 </body>
 </html>
