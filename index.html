@@ -5,34 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ryo Studios | Era de Eventos</title>
     <link rel="icon" type="image/png" href="ryostudios.png">
+    
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root { --bg: #0b0b0c; --card-bg: #161618; --text: #f7f8f8; --text-dim: #b1b1b3; --accent: #5e6ad2; --border: rgba(255, 255, 255, 0.08); }
-        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; -webkit-font-smoothing: antialiased; }
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; line-height: 1.6; -webkit-font-smoothing: antialiased; }
         nav { position: fixed; top: 0; width: 100%; height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 5%; background: rgba(11, 11, 12, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); z-index: 100; box-sizing: border-box; }
         .hero { padding: 180px 20px 60px; text-align: center; max-width: 900px; margin: 0 auto; }
         h1 { font-size: clamp(44px, 7vw, 80px); letter-spacing: -0.05em; margin-bottom: 24px; line-height: 0.9; font-weight: 800; }
-        .btn { padding: 14px 32px; border-radius: 10px; text-decoration: none; font-weight: 600; display: inline-block; background: var(--accent); color: white; transition: 0.2s; }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(94, 106, 210, 0.2); }
+        .description { font-size: 20px; color: var(--text-dim); max-width: 650px; margin: 0 auto 48px; }
+        .btn { padding: 14px 32px; border-radius: 10px; text-decoration: none; font-weight: 600; display: inline-block; transition: 0.2s; }
+        .btn-primary { background: var(--accent); color: white; }
+        .btn-secondary { background: rgba(255,255,255,0.05); color: white; border: 1px solid var(--border); margin-left: 10px; }
         .events-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; padding: 0 5% 100px; max-width: 1200px; margin: 0 auto; }
         .event-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 32px; }
-        footer { text-align: center; padding: 40px; opacity: 0.4; font-size: 12px; }
+        .tag { font-size: 10px; font-weight: 800; padding: 4px 12px; border-radius: 100px; background: rgba(94, 106, 210, 0.1); color: #8c9eff; text-transform: uppercase; }
+        footer { text-align: center; padding: 40px; opacity: 0.4; font-size: 12px; border-top: 1px solid var(--border); }
     </style>
 </head>
 <body>
     <nav>
         <div style="font-weight: 800;">⚡ RYO STUDIOS</div>
-        <a href="/admin" style="color: var(--text-dim); text-decoration: none; font-size: 13px;">Staff Login</a>
+        <div>
+            <a href="/admin" class="btn-secondary" style="padding: 8px 15px; border-radius: 6px; text-decoration: none; font-size: 12px;">Acceso Staff</a>
+        </div>
     </nav>
     <header class="hero">
         <h1>Ryo Studios</h1>
-        <p style="color: var(--text-dim); font-size: 20px;">Gestión profesional de eventos Minecraft.</p>
-        <a href="#eventos" class="btn">Explorar Proyectos</a>
+        <p class="description">Gestión y creación de eventos profesionales en Minecraft.</p>
+        <a href="#eventos" class="btn btn-primary">Ver Eventos</a>
     </header>
     <div id="eventos" class="events-grid">
         <div class="event-card">
-            <h3>Copa Ryo PvP</h3>
-            <p style="color: var(--text-dim);">Próximamente disponible.</p>
+            <span class="tag">En Vivo</span>
+            <h3>Prueba de Sistema</h3>
+            <p>El panel de administración está siendo configurado.</p>
         </div>
     </div>
     <footer>&copy; 2026 Ryo Studios</footer>
