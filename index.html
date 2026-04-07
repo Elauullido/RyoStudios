@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ryo Studios | Minecraft Events</title>
+    <title>Ryo Studios | Panel de Control</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
@@ -22,143 +22,151 @@
             color: var(--text);
             font-family: 'Inter', sans-serif;
             margin: 0;
-            overflow-x: hidden;
+            line-height: 1.6;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Animación de entrada */
-        @keyframes reveal {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
+        /* Navbar */
         nav {
             position: fixed;
-            top: 0; width: 100%; height: 60px;
+            top: 0; width: 100%; height: 64px;
             display: flex; align-items: center; justify-content: space-between;
-            padding: 0 40px; background: rgba(11, 11, 12, 0.8);
+            padding: 0 5%; background: rgba(11, 11, 12, 0.8);
             backdrop-filter: blur(12px); border-bottom: 1px solid var(--border);
             z-index: 100; box-sizing: border-box;
         }
 
         .hero {
-            padding: 160px 20px 80px;
+            padding: 180px 20px 60px;
             text-align: center;
-            max-width: 1000px;
+            max-width: 900px;
             margin: 0 auto;
-            animation: reveal 0.8s ease-out;
         }
 
         h1 {
-            font-size: clamp(40px, 8vw, 72px);
+            font-size: clamp(44px, 7vw, 80px);
             letter-spacing: -0.05em;
-            margin-bottom: 20px;
-            line-height: 1;
+            margin-bottom: 24px;
+            line-height: 0.9;
+            font-weight: 800;
         }
 
         .description {
             font-size: 20px;
             color: var(--text-dim);
-            max-width: 700px;
-            margin: 0 auto 40px;
+            max-width: 650px;
+            margin: 0 auto 48px;
         }
 
-        .btn-group {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-bottom: 60px;
-        }
-
+        /* Botones */
+        .btn-group { display: flex; gap: 16px; justify-content: center; margin-bottom: 80px; }
         .btn {
-            padding: 12px 28px;
-            border-radius: 8px;
+            padding: 14px 32px;
+            border-radius: 10px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 14px;
-            transition: 0.2s;
+            font-size: 15px;
+            transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
+        .btn-primary { background: var(--accent); color: white; box-shadow: 0 10px 30px rgba(94, 106, 210, 0.2); }
+        .btn-secondary { background: rgba(255,255,255,0.05); color: white; border: 1px solid var(--border); }
+        .btn:hover { transform: translateY(-3px); filter: brightness(1.1); }
 
-        .btn-primary { background: var(--accent); color: white; box-shadow: 0 0 20px rgba(94, 106, 210, 0.3); }
-        .btn-discord { background: var(--discord); color: white; }
-        .btn:hover { transform: translateY(-2px); opacity: 0.9; }
-
-        /* Sección de Eventos */
+        /* Grid de Eventos */
+        .section-title { text-align: center; font-size: 14px; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 40px; }
         .events-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            padding: 40px;
-            max-width: 1100px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            padding: 0 5% 100px;
+            max-width: 1200px;
             margin: 0 auto;
-            animation: reveal 1s ease-out 0.2s backwards;
         }
 
         .event-card {
             background: var(--card-bg);
             border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 24px;
-            text-align: left;
-            transition: 0.3s;
-        }
-
-        .event-card:hover {
-            border-color: var(--accent);
-            background: #1c1c1f;
-        }
-
-        .tag {
-            background: rgba(94, 106, 210, 0.1);
-            color: var(--accent);
-            padding: 4px 10px;
             border-radius: 20px;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
+            padding: 32px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
         }
 
-        .event-card h3 { margin: 15px 0 10px; font-size: 18px; }
-        .event-card p { color: var(--text-dim); font-size: 14px; margin: 0; }
+        .event-card:hover { border-color: var(--accent); transform: scale(1.02); background: #1c1c1f; }
+        
+        .tag {
+            font-size: 10px;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 100px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            color: var(--text-dim);
+        }
 
+        .tag.active { background: rgba(94, 106, 210, 0.1); color: var(--accent); border-color: rgba(94,106,210,0.2); }
+
+        .event-card h3 { margin: 20px 0 12px; font-size: 22px; }
+        .event-card p { color: var(--text-dim); font-size: 15px; line-height: 1.5; }
+
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            border-top: 1px solid var(--border);
+            color: var(--text-dim);
+            font-size: 13px;
+        }
     </style>
 </head>
 <body>
 
     <nav>
-        <div style="font-weight: 700; letter-spacing: -1px;">⚡ RYO STUDIOS</div>
-        <a href="#" class="btn btn-discord" style="padding: 6px 16px; font-size: 12px;">Discord</a>
+        <div style="font-weight: 700; letter-spacing: -1px; font-size: 18px;">⚡ RYO STUDIOS</div>
+        <div style="display: flex; gap: 20px; align-items: center;">
+            <a href="#" style="color: var(--text-dim); text-decoration: none; font-size: 14px;">Eventos</a>
+            <a href="#" class="btn btn-secondary" style="padding: 8px 20px;">Discord</a>
+        </div>
     </nav>
 
-    <section class="hero">
-        <h1>Ryo Studios<br><span style="color: #fff; opacity: 0.9;">y su era de eventos</span></h1>
-        <p class="description">Creamos experiencias épicas y eventos únicos dentro de Minecraft. De la imaginación al servidor.</p>
+    <header class="hero">
+        <h1>Ryo Studios<br><span style="opacity: 0.5;">Era de Eventos</span></h1>
+        <p class="description">La nueva frontera de la creación en Minecraft. Diseñamos mundos, gestionamos torneos y construimos comunidad.</p>
         
         <div class="btn-group">
-            <a href="#" class="btn btn-primary">Empezar ahora →</a>
-            <a href="#" class="btn btn-discord">Únete al Discord</a>
+            <a href="https://discord.gg/TU_LINK" class="btn btn-primary">Unirse al Equipo</a>
+            <a href="#eventos" class="btn btn-secondary">Ver Calendario</a>
         </div>
-    </section>
+    </header>
 
-    <div class="events-grid">
-        <div class="event-card">
-            <span class="tag">Próximamente</span>
-            <h3>Torneo de Survival</h3>
-            <p>Una competencia de 48 horas donde solo el más técnico sobrevive.</p>
-        </div>
+    <div id="eventos">
+        <p class="section-title">Próximos Proyectos</p>
+        <div class="events-grid">
+            
+            <div class="event-card">
+                <span class="tag active">En Vivo</span>
+                <h3>Supervivencia Técnica</h3>
+                <p>Un mundo diseñado para llevar las mecánicas de Minecraft al límite. ¿Estás listo para el desafío?</p>
+            </div>
 
-        <div class="event-card">
-            <span class="tag">En Desarrollo</span>
-            <h3>Eventos de Rol</h3>
-            <p>Historias inmersivas con mecánicas personalizadas para streamers.</p>
-        </div>
+            <div class="event-card">
+                <span class="tag">Planificado</span>
+                <h3>Copa Ryo: PvP</h3>
+                <p>El torneo de combate más grande de la temporada. Premios únicos para los mejores guerreros.</p>
+            </div>
 
-        <div class="event-card" style="opacity: 0.5;">
-            <span class="tag" style="background: #333; color: #888;">Finalizado</span>
-            <h3>UHC Ryo v1</h3>
-            <p>El primer evento oficial de nuestra era. ¡Gracias por participar!</p>
+            <div class="event-card">
+                <span class="tag">Mantenimiento</span>
+                <h3>Build Battle</h3>
+                <p>Próximamente abriremos las inscripciones para los constructores más creativos del servidor.</p>
+            </div>
+
         </div>
     </div>
+
+    <footer>
+        &copy; 2026 Ryo Studios — Built with Passion for Minecraft.
+    </footer>
 
 </body>
 </html>
