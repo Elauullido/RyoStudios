@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rayo Studios — Built for Impact</title>
+    <title>RyoStudios — Built for Impact</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
@@ -11,7 +11,7 @@
             --bg-primary: #0b0b0c;
             --text-primary: #f7f8f8;
             --text-secondary: #b1b1b3;
-            --accent: #5e6ad2; /* Morado/Azul de Linear */
+            --accent: #5e6ad2;
             --accent-glow: rgba(94, 106, 210, 0.5);
             --border-subtle: rgba(255, 255, 255, 0.08);
         }
@@ -25,7 +25,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Navbar estilo Blur */
+        /* Navbar con efecto Blur */
         nav {
             position: fixed;
             top: 0; width: 100%;
@@ -41,7 +41,7 @@
             box-sizing: border-box;
         }
 
-        .logo { font-weight: 600; font-size: 14px; letter-spacing: -0.5px; }
+        .logo { font-weight: 600; font-size: 14px; letter-spacing: -0.5px; color: #fff; text-decoration: none; }
 
         /* Hero Section */
         .hero {
@@ -51,7 +51,7 @@
             overflow: hidden;
         }
 
-        /* El efecto de luz en el fondo */
+        /* Efecto de luz superior */
         .hero::before {
             content: "";
             position: absolute;
@@ -63,7 +63,7 @@
         }
 
         h1 {
-            font-size: 56px;
+            font-size: clamp(40px, 8vw, 72px); /* Tamaño responsivo */
             font-weight: 700;
             letter-spacing: -0.04em;
             margin-bottom: 24px;
@@ -73,69 +73,87 @@
         .accent-text {
             background: linear-gradient(90deg, #b1b1b3, #fff);
             -webkit-background-clip: text;
+            background-clip: text; /* Corregido para compatibilidad */
             -webkit-text-fill-color: transparent;
         }
 
         p.description {
-            font-size: 20px;
+            font-size: clamp(16px, 4vw, 20px);
             color: var(--text-secondary);
             max-width: 600px;
             margin: 0 auto 40px;
         }
 
-        /* Botón con efecto Glow */
+        /* Botón con Glow */
         .btn-primary {
             background: var(--accent);
             color: white;
-            padding: 12px 24px;
+            padding: 12px 28px;
             border-radius: 8px;
             text-decoration: none;
             font-size: 14px;
             font-weight: 600;
             box-shadow: 0 0 20px var(--accent-glow);
-            transition: transform 0.2s ease;
+            transition: all 0.2s ease;
             display: inline-block;
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 0 30px var(--accent-glow);
+            background: #6e7be2;
         }
 
-        /* Dashboard Mockup (el cuadro que parece app) */
+        /* Dashboard Mockup corregido */
         .mockup {
             max-width: 900px;
             margin: 60px auto 0;
             background: #161618;
             border: 1px solid var(--border-subtle);
             border-radius: 12px;
-            height: 300px;
+            height: 380px;
             box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+            display: flex; /* Añadido para evitar errores de alineación */
+            flex-direction: column;
         }
+
+        .mockup-header {
+            height: 32px; 
+            border-bottom: 1px solid var(--border-subtle); 
+            display: flex; 
+            align-items: center; 
+            padding: 0 12px; 
+            gap: 6px;
+        }
+
+        .dot { width: 8px; height: 8px; border-radius: 50%; opacity: 0.7; }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">⚡ RAYO STUDIOS</div>
+        <a href="#" class="logo">⚡ RYOSTUDIOS</a>
         <div style="display: flex; gap: 20px;">
-            <a href="#" class="btn-primary" style="padding: 6px 16px; box-shadow: none;">Únete</a>
+            <a href="#" class="btn-primary" style="padding: 6px 16px; box-shadow: none;">Login</a>
         </div>
     </nav>
 
     <section class="hero">
         <h1>Diseñado para la<br><span class="accent-text">nueva era digital.</span></h1>
-        <p class="description">Rayo Studios es la plataforma de creación definitiva. Velocidad, enfoque e impacto en cada pixel que entregamos.</p>
+        <p class="description">RyoStudios es la plataforma de creación definitiva. Velocidad, enfoque e impacto en cada pixel que entregamos.</p>
         
         <div class="actions">
             <a href="#" class="btn-primary">Empezar ahora →</a>
         </div>
 
         <div class="mockup">
-            <div style="height: 32px; border-bottom: 1px solid var(--border-subtle); display: flex; items-center; padding: 0 12px; gap: 6px; align-items: center;">
-                <div style="width: 8px; height: 8px; border-radius: 50%; background: #ff5f57;"></div>
-                <div style="width: 8px; height: 8px; border-radius: 50%; background: #febc2e;"></div>
-                <div style="width: 8px; height: 8px; border-radius: 50%; background: #28c840;"></div>
+            <div class="mockup-header">
+                <div class="dot" style="background: #ff5f57;"></div>
+                <div class="dot" style="background: #febc2e;"></div>
+                <div class="dot" style="background: #28c840;"></div>
+            </div>
+            <div style="flex: 1; display: flex; align-items: center; justify-content: center; color: #333;">
+                <p style="font-size: 12px; font-weight: 500;">Preview_Project_v1.0</p>
             </div>
         </div>
     </section>
