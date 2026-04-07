@@ -26,8 +26,10 @@
             justify-content: center; 
             height: 100vh; 
             margin: 0; 
+            overflow: hidden;
         }
 
+        /* DISEÑO DEL LOGIN NEGRO */
         .login-box { 
             background: var(--card-bg); 
             padding: 40px; 
@@ -37,6 +39,7 @@
             max-width: 350px; 
             text-align: center;
             box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            z-index: 100;
         }
 
         h2 { margin-bottom: 8px; letter-spacing: -1px; }
@@ -54,8 +57,6 @@
             font-size: 14px;
         }
 
-        input:focus { outline: 1px solid var(--accent); }
-
         button { 
             width: 100%; 
             padding: 14px; 
@@ -66,7 +67,6 @@
             font-weight: 600; 
             cursor: pointer; 
             transition: 0.2s;
-            font-size: 15px;
         }
 
         button:hover { transform: translateY(-2px); filter: brightness(1.1); }
@@ -81,13 +81,14 @@
             border-radius: 8px;
         }
 
-        #admin-panel-container { display: none; width: 100%; height: 100vh; }
+        /* OCULTAR EL PANEL HASTA EL LOGIN */
+        #nc-root { display: none; }
     </style>
 </head>
 <body>
 
     <div id="login-form" class="login-box">
-        <div style="font-size: 30px; margin-bottom: 10px;">⚡</div>
+        <div style="font-size: 30px; margin-bottom: 10px; color: #ff9d00;">⚡</div>
         <h2>Panel Ryo</h2>
         <p>Introduce tus credenciales de equipo</p>
         
@@ -98,11 +99,7 @@
         <button onclick="checkLogin()">Entrar al Panel</button>
     </div>
 
-    <div id="admin-panel-container">
-        </div>
-
     <script src="admins.js"></script>
-
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 
     <script>
@@ -111,12 +108,14 @@
             const k = document.getElementById('key').value;
             const error = document.getElementById('error-msg');
 
-            // Verificamos contra la lista que creaste en admins.js
+            // Verifica contra admins.js
             if (window.listaAdmins && window.listaAdmins[u] === k) {
                 document.getElementById('login-form').style.display = 'none';
-                document.getElementById('admin-panel-container').style.display = 'block';
                 
-                // Iniciamos el panel de control
+                // Forzamos que aparezca el panel de administración
+                const cmsRoot = document.getElementById('nc-root');
+                if(cmsRoot) cmsRoot.style.display = 'block';
+                
                 initCMS();
             } else {
                 error.style.display = 'block';
@@ -126,6 +125,8 @@
         function initCMS() {
             CMS.init({
                 config: {
+                    load_config_file: false, // Evita el error 404 de la derecha
+                    display_url: 'https://ryostudios.netlify.app',
                     backend: { 
                         name: 'git-gateway', 
                         branch: 'main' 
