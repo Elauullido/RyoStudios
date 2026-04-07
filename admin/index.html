@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ryo Studios | Panel de Administración</title>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+</head>
+<body>
+  <script>
+    // Configuración interna para que sepa qué campos mostrar
+    CMS.init({
+      config: {
+        backend: {
+          name: 'git-gateway',
+          branch: 'main', 
+        },
+        media_folder: 'images',
+        public_folder: '/images',
+        collections: [
+          {
+            name: 'eventos',
+            label: 'Eventos Minecraft',
+            folder: 'content/eventos',
+            create: true,
+            slug: '{{slug}}',
+            fields: [
+              { label: 'Título del Evento', name: 'title', widget: 'string' },
+              { label: 'Estado', name: 'status', widget: 'select', options: ['En Vivo', 'Próximamente', 'Finalizado'] },
+              { label: 'Descripción', name: 'body', widget: 'text' },
+              { label: 'Fecha', name: 'date', widget: 'datetime' }
+            ],
+          },
+        ],
+      },
+    });
+  </script>
+</body>
+</html>
